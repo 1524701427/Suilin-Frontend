@@ -1,0 +1,23 @@
+{
+  "name": "suilin-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:h5": "uni",
+    "dev:mp-weixin": "uni -p mp-weixin",
+    "build:h5": "uni build",
+    "build:mp-weixin": "uni build -p mp-weixin"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "latest",
+    "@dcloudio/uni-components": "latest",
+    "@dcloudio/uni-h5": "latest",
+    "@dcloudio/uni-mp-weixin": "latest",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@dcloudio/uni-cli-shared": "latest",
+    "@dcloudio/vite-plugin-uni": "latest",
+    "vite": "^5.4.0"
+  }
+}
