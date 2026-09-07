@@ -1,0 +1,19 @@
+{
+    "name" : "岁邻",
+    "appid" : "__UNI__ANKANG_FAMILY_CARE",
+    "description" : "连接长辈、家人与社区服务的温暖生活关怀小程序",
+    "versionName" : "1.0.0",
+    "versionCode" : "100",
+    "transformPx" : false,
+    "mp-weixin" : {
+        "appid" : "wx06cfd5449148bad0",
+        "lazyCodeLoading" : "requiredComponents",
+        "setting" : {
+            "urlCheck" : false,
+            "es6" : true
+        },
+        "usingComponents" : true
+    },
+    "vueVersion" : "3",
+    "locale" : "zh-Hans"
+}
