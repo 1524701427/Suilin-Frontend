@@ -1,1 +1,14 @@
-<template><view class="page"><text class="title">找回密码</text><text class="sub">先完成前端流程，验证码暂使用测试模式</text><view class="card"><input v-model="phone" class="input" type="number" maxlength="11" placeholder="手机号"/><view class="code-row"><input v-model="code" class="input code" type="number" maxlength="6" placeholder="验证码"/><button class="code-btn" @tap="sendCode">获取验证码</button></view><input v-model="password" class="input" type="password" placeholder="新密码，至少6位"/><button class="primary" @tap="submit">重置密码</button></view></view></template><script>export default{data(){return{phone:'',code:'',password:''}},methods:{sendCode(){if(!/^1\d{10}$/.test(this.phone))return uni.showToast({title:'请输入正确手机号',icon:'none'});uni.showToast({title:'测试验证码：123456',icon:'none'})},submit(){if(this.code!=='123456'||this.password.length<6)return uni.showToast({title:'请检查验证码和新密码',icon:'none'});uni.showToast({title:'密码已重置',icon:'success'});setTimeout(()=>uni.navigateBack(),500)}}}</script><style scoped>.page{min-height:100vh;padding:80rpx 32rpx;background:#f6f7f3;box-sizing:border-box}.title{display:block;font-size:44rpx;font-weight:900;color:#294136}.sub{display:block;margin-top:12rpx;color:#7c867f;font-size:23rpx}.card{margin-top:32rpx;padding:28rpx;background:#fff;border-radius:28rpx}.input{height:84rpx;margin-bottom:18rpx;padding:0 20rpx;background:#f4f6f3;border-radius:18rpx}.code-row{display:flex;gap:14rpx}.code{flex:1}.code-btn{width:210rpx;height:84rpx;line-height:84rpx;margin:0;background:#e7efe9;color:#315f4b;font-size:22rpx}.primary{background:#315f4b;color:#fff;border-radius:20rpx}</style>
+<template>
+  <view class="page">
+    <text class="title">找回密码</text>
+    <text class="sub">密码重置接口和短信验证码服务尚未接入。</text>
+    <view class="card">
+      <text class="notice">为了避免产生假的验证码和假的“重置成功”状态，当前版本暂不提供本地模拟重置。</text>
+      <button class="primary" @tap="backToLogin">返回登录</button>
+    </view>
+  </view>
+</template>
+<script>
+export default{methods:{backToLogin(){uni.redirectTo({url:'/pages/login/index'})}}}
+</script>
+<style scoped>.page{min-height:100vh;padding:80rpx 32rpx;background:#fff9f2;box-sizing:border-box}.title{display:block;font-size:44rpx;font-weight:900;color:#493a33}.sub{display:block;margin-top:12rpx;color:#8b786d;font-size:23rpx;line-height:1.6}.card{margin-top:32rpx;padding:30rpx;background:#fff;border-radius:28rpx}.notice{display:block;font-size:24rpx;line-height:1.8;color:#75655c}.primary{margin-top:28rpx;background:#2fa99a;color:#fff;border-radius:20rpx}</style>
