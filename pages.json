@@ -1,0 +1,36 @@
+{
+  "pages": [
+    {"path":"pages/entry/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/login/index","style":{"navigationBarTitleText":"登录"}},
+    {"path":"pages/register/index","style":{"navigationBarTitleText":"注册账号"}},
+    {"path":"pages/forgot-password/index","style":{"navigationBarTitleText":"找回密码"}},
+    {"path":"pages/elder-bind/index","style":{"navigationBarTitleText":"接受邀请"}},
+    {"path":"pages/elder/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/home/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/health/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/care/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/services/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/mine/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/elder-add/index","style":{"navigationBarTitleText":"添加长辈"}},
+    {"path":"pages/family/elder-invite/index","style":{"navigationBarTitleText":"邀请长辈"}},
+    {"path":"pages/family/member/index","style":{"navigationBarTitleText":"家庭成员"}},
+    {"path":"pages/family/member-invite/index","style":{"navigationBarTitleText":"邀请家庭成员"}},
+    {"path":"pages/family/task/index","style":{"navigationBarTitleText":"照护任务"}},
+    {"path":"pages/family/task-edit/index","style":{"navigationBarTitleText":"任务编辑"}},
+    {"path":"pages/family/reminder-edit/index","style":{"navigationBarTitleText":"提醒设置"}},
+    {"path":"pages/family/mall/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/service-detail/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/institution/index","style":{"navigationStyle":"custom"}},
+    {"path":"pages/family/profile-edit/index","style":{"navigationBarTitleText":"个人资料"}},
+    {"path":"pages/family/device/index","style":{"navigationBarTitleText":"设备管理"}},
+    {"path":"pages/family/notifications/index","style":{"navigationBarTitleText":"通知设置"}},
+    {"path":"pages/family/privacy/index","style":{"navigationBarTitleText":"隐私与授权"}},
+    {"path":"pages/family/help/index","style":{"navigationBarTitleText":"帮助与反馈"}},
+    {"path":"pages/family/about/index","style":{"navigationBarTitleText":"关于岁邻"}}
+  ],
+  "globalStyle": {
+    "backgroundColor": "#fff8f1",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#fff8f1"
+  }
+}
