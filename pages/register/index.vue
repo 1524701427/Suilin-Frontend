@@ -27,7 +27,8 @@ import { authApi } from '@/api/index.js'
 
 export default {
   components:{SuilinLogo},
-  data(){return{form:{phone:'',name:'',password:''},loading:false}},
+  data(){return{form:{phone:'',name:'',password:''},loading:false,redirect:''}},
+  onLoad(options){this.redirect=options.redirect?decodeURIComponent(options.redirect):''},
   methods:{
     async submit(){
       const f=this.form
@@ -41,10 +42,11 @@ export default {
         uni.setStorageSync('suilin_token',data.token)
         uni.setStorageSync('suilin_user',{userId:data.userId,name:f.name.trim(),phone:f.phone,role:data.role})
         uni.showToast({title:'注册成功',icon:'success'})
-        setTimeout(()=>uni.reLaunch({url:'/pages/family/home/index'}),400)
+        const target=this.redirect||'/pages/family/home/index'
+        setTimeout(()=>uni.reLaunch({url:target}),400)
       }finally{this.loading=false}
     },
-    goLogin(){uni.navigateTo({url:'/pages/login/index'})},
+    goLogin(){const q=this.redirect?`?redirect=${encodeURIComponent(this.redirect)}`:'';uni.navigateTo({url:'/pages/login/index'+q})},
     goBack(){uni.reLaunch({url:'/pages/entry/index'})}
   }
 }
