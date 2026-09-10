@@ -74,6 +74,11 @@ export const notificationApi = {
   update: data => request({ url: '/notification-settings', method: 'PUT', data })
 }
 
+export const privacyApi = {
+  get: () => request({ url: '/privacy-settings' }),
+  update: data => request({ url: '/privacy-settings', method: 'PUT', data })
+}
+
 export const feedbackApi = {
   create: data => request({ url: '/feedbacks', method: 'POST', data })
 }
