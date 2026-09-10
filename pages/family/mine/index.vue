@@ -4,26 +4,22 @@
 
   <view class="profile-card" @tap="go('profile-edit')">
     <view class="avatar">{{avatarText}}</view>
-    <view class="profile-content">
-      <text class="profile-name">{{user.name || '家人账号'}}</text>
-      <text class="profile-role">家人端账号</text>
-    </view>
+    <view class="profile-content"><text class="profile-name">{{user.name || '家人账号'}}</text><text class="profile-role">家人端账号</text></view>
     <text class="edit">编辑</text>
   </view>
 
   <view class="family-summary">
-    <view>
-      <text class="summary-label">我的长辈</text>
-      <text class="summary-title">{{elderSummary}}</text>
-    </view>
+    <view><text class="summary-label">我的长辈</text><text class="summary-title">{{elderSummary}}</text></view>
     <button class="mini-add" @tap="addElder">+ 添加长辈</button>
   </view>
 
   <text class="section-title">家庭管理</text>
   <view class="menu-card">
-    <view class="menu-row" @tap="go('member')"><view class="menu-icon">👨‍👩‍👧</view><view class="menu-main"><text class="menu-title">长辈与家庭</text><text class="menu-desc">查看长辈资料与绑定状态</text></view><text class="arrow">→</text></view>
+    <view class="menu-row" @tap="go('member')"><view class="menu-icon">👨‍👩‍👧</view><view class="menu-main"><text class="menu-title">长辈与家庭</text><text class="menu-desc">家庭成员、长辈与绑定状态</text></view><text class="arrow">→</text></view>
+    <view class="menu-row" @tap="go('task')"><view class="menu-icon">✅</view><view class="menu-main"><text class="menu-title">照护任务</text><text class="menu-desc">家庭成员之间的待办和分工</text></view><text class="arrow">→</text></view>
+    <view class="menu-row" @tap="go('sos')"><view class="menu-icon">🆘</view><view class="menu-main"><text class="menu-title">紧急求助记录</text><text class="menu-desc">查看并处理长辈真实发起的 SOS</text></view><text class="arrow">→</text></view>
     <view class="menu-row" @tap="go('device')"><view class="menu-icon">⌚</view><view class="menu-main"><text class="menu-title">设备管理</text><text class="menu-desc">查看已绑定设备</text></view><text class="arrow">→</text></view>
-    <view class="menu-row" @tap="go('notifications')"><view class="menu-icon">🔔</view><view class="menu-main"><text class="menu-title">通知设置</text><text class="menu-desc">异常、提醒和紧急通知</text></view><text class="arrow">→</text></view>
+    <view class="menu-row" @tap="go('notifications')"><view class="menu-icon">🔔</view><view class="menu-main"><text class="menu-title">通知设置</text><text class="menu-desc">保存账号通知偏好</text></view><text class="arrow">→</text></view>
   </view>
 
   <text class="section-title">更多</text>
@@ -44,34 +40,16 @@ import PageHeader from '@/components/PageHeader.vue'
 import FamilyTabbar from '@/components/FamilyTabbar.vue'
 import SuilinLogo from '@/components/SuilinLogo.vue'
 import { authApi, elderApi } from '@/api/index.js'
-
 export default{
   components:{PageHeader,FamilyTabbar,SuilinLogo},
   data(){return{user:{},elders:[]}},
-  computed:{
-    avatarText(){return (this.user.name||'家').slice(-1)},
-    elderSummary(){return this.elders.length ? `已添加 ${this.elders.length} 位长辈` : '还没有添加长辈'}
-  },
-  onShow(){
-    this.user=uni.getStorageSync('suilin_user')||{}
-    this.loadElders()
-  },
+  computed:{avatarText(){return (this.user.name||'家').slice(-1)},elderSummary(){return this.elders.length?`已添加 ${this.elders.length} 位长辈`:'还没有添加长辈'}},
+  onShow(){this.user=uni.getStorageSync('suilin_user')||{};this.loadElders()},
   methods:{
-    async loadElders(){
-      if(!uni.getStorageSync('suilin_token')){this.elders=[];return}
-      try{this.elders=await elderApi.list()||[]}catch(e){this.elders=[]}
-    },
+    async loadElders(){if(!uni.getStorageSync('suilin_token')){this.elders=[];return}try{this.elders=await elderApi.list()||[]}catch(e){this.elders=[]}},
     addElder(){uni.navigateTo({url:'/pages/family/elder-add/index'})},
-    async logout(){
-      try{await authApi.logout()}catch(e){}
-      uni.removeStorageSync('suilin_token')
-      uni.removeStorageSync('suilin_user')
-      uni.reLaunch({url:'/pages/login/index'})
-    },
-    go(name){
-      const map={member:'/pages/family/member/index',device:'/pages/family/device/index',notifications:'/pages/family/notifications/index',privacy:'/pages/family/privacy/index',help:'/pages/family/help/index',about:'/pages/family/about/index','profile-edit':'/pages/family/profile-edit/index'}
-      uni.navigateTo({url:map[name]})
-    }
+    async logout(){try{await authApi.logout()}catch(e){}uni.removeStorageSync('suilin_token');uni.removeStorageSync('suilin_user');uni.reLaunch({url:'/pages/login/index'})},
+    go(name){const map={member:'/pages/family/member/index',task:'/pages/family/task/index',sos:'/pages/family/sos/index',device:'/pages/family/device/index',notifications:'/pages/family/notifications/index',privacy:'/pages/family/privacy/index',help:'/pages/family/help/index',about:'/pages/family/about/index','profile-edit':'/pages/family/profile-edit/index'};uni.navigateTo({url:map[name]})}
   }
 }
 </script>
