@@ -19,7 +19,8 @@ import SuilinLogo from '@/components/SuilinLogo.vue'
 import { authApi } from '@/api/index.js'
 export default{
   components:{SuilinLogo},
-  data(){return{phone:'',password:'',loading:false}},
+  data(){return{phone:'',password:'',loading:false,redirect:''}},
+  onLoad(options){this.redirect=options.redirect?decodeURIComponent(options.redirect):''},
   methods:{
     async login(){
       if(!/^1\d{10}$/.test(this.phone)||this.password.length<6) return uni.showToast({title:'请输入正确账号信息',icon:'none'})
@@ -30,11 +31,12 @@ export default{
         uni.setStorageSync('suilin_token',data.token)
         uni.setStorageSync('suilin_user',{userId:data.userId,name:data.name||'',phone:this.phone,role:data.role})
         uni.showToast({title:'登录成功',icon:'success'})
-        setTimeout(()=>uni.reLaunch({url:'/pages/family/home/index'}),400)
+        const target=this.redirect||'/pages/family/home/index'
+        setTimeout(()=>uni.reLaunch({url:target}),400)
       }finally{this.loading=false}
     },
     forgot(){uni.navigateTo({url:'/pages/forgot-password/index'})},
-    register(){uni.navigateTo({url:'/pages/register/index'})}
+    register(){const q=this.redirect?`?redirect=${encodeURIComponent(this.redirect)}`:'';uni.navigateTo({url:'/pages/register/index'+q})}
   }
 }
 </script>
