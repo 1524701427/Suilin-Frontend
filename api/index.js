@@ -43,6 +43,7 @@ export const reminderApi = {
 
 export const taskApi = {
   list: () => request({ url: '/care-tasks' }),
+  detail: id => request({ url: `/care-tasks/${id}` }),
   create: data => request({ url: '/care-tasks', method: 'POST', data }),
   update: (id, data) => request({ url: `/care-tasks/${id}`, method: 'PUT', data }),
   complete: id => request({ url: `/care-tasks/${id}/complete`, method: 'POST' }),
